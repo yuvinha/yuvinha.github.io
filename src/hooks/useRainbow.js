@@ -25,6 +25,7 @@ const useRainbow = (intervalDelay = 2000) => {
       try {
         CSS.registerProperty({
           name: `--rainbow-color-${uniqueId}-${idx}`,
+          // name: `--rainbow-color-${idx}`,
           initialValue: rainbowColors[idx],
           syntax: '<color>',
           inherits: false,
@@ -41,9 +42,12 @@ const useRainbow = (intervalDelay = 2000) => {
 
   // Using that interval count, derive each current color value
   return {
-    '--rainbow-color-0': rainbowColors[(intervalCount + 1) % paletteSize],
-    '--rainbow-color-1': rainbowColors[(intervalCount + 2) % paletteSize],
-    '--rainbow-color-2': rainbowColors[(intervalCount + 3) % paletteSize],
+    [`--rainbow-color-${uniqueId}-0`]:
+      rainbowColors[(intervalCount + 1) % paletteSize],
+    [`--rainbow-color-${uniqueId}-1`]:
+      rainbowColors[(intervalCount + 2) % paletteSize],
+    [`--rainbow-color-${uniqueId}-2`]:
+      rainbowColors[(intervalCount + 3) % paletteSize],
   };
 };
 
