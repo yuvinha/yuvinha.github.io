@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import NotFound from 'components/NotFound';
+import GlobalStyles from 'styles/Global';
 
-function App() {
+const App = () => {
+  const location = useLocation();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <GlobalStyles />
+      <Routes location={location} key={location.key}>
+        <Route path='/' element={<NotFound />} />
+      </Routes>
+    </Fragment>
   );
-}
+};
 
 export default App;
